@@ -74,7 +74,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 				Object parameter = parameters[i];
 				int index = i + 1;
 				if(parameter instanceof String) {
-					statement.setString(index, (String) parameter);
+					statement.setNString(index, (String) parameter);
 				} else if(parameter instanceof Double) {
 					statement.setDouble(index, (double) parameter);
 				} else if(parameter instanceof Timestamp) {

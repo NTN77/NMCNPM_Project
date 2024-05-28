@@ -69,6 +69,10 @@ public class Cart {
         return Math.round(amount * 100.0) / 100.0;
     }
 
+    public double getVNTotalAmount() {
+        return Math.ceil(this.getTotalAmount() * 25452.48);
+    }
+
     /**
      * Sequence diagram: AddCart - CNPM
      * 1.1.3: getInstance() (is sent by AddToCartServlet)
