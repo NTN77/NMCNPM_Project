@@ -126,9 +126,17 @@
 					<p><%=prod.getBrand()%></p>
 					<br />
 					<div class="price-box-bar">
+						<c:url var="addToCart" value="/AddToCartServlet">
+							<c:param name="page" value="detail"></c:param>
+							<c:param name="action" value="add"></c:param>
+							<c:param name="id" value="${param.productID}"></c:param>
+						</c:url>
 						<div class="price-box-bar">
 							<div class="cart-and-bay-btn">
-								<form>
+								<!-- Sequence diagram: AddCart - CNPM
+									 1: click button "Add To Cart" (is sent by User)
+								-->
+								<form method="POST" action="${addToCart}">
 									<button class="btn hvr-hover" type="submit">
 										<fmt:message>product.cart</fmt:message>
 									</button>

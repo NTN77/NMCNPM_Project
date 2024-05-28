@@ -58,7 +58,18 @@ public class ProductDAO extends AbstractDAO<Product> implements IProductDAO {
 		String sql = "select * from products limit ?, ?";
 		return query(sql, new ProductMapper(), offset, getProductsPerPageConstant());
 	}
-
+	/**
+	 * Sequence diagram: AddCart - CNPM
+	 * 1.1.1.1: getProductById(id) (is sent by ProductService)
+	 */
+	/**
+	 * Sequence diagram: UpdateQuantity - CNPM
+	 * 2.1.1.1: getProductById(id) (is sent by ProductService)
+	 */
+	/**
+	 * Sequence diagram: RemoveItem - CNPM
+	 * 2.1.6.1: getProductById(id) (is sent by ProductService)
+	 */
 	@Override
 	public List<Product> getProductById(int id) {
 		String sql = "select * from products where id=?";
