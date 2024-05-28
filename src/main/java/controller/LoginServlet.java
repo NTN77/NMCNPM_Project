@@ -50,7 +50,6 @@ public class LoginServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		request.getSession(true).invalidate();
 		
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");

@@ -70,9 +70,7 @@
 										method="GET" action="${pageContext.request.contextPath}/SearchServlet">
 										<input type="hidden" id="searchTypeValue" name="action" value="" />
 										<input
-											id="search-panel"
-											style="flex: 1; border: none; padding-left: 12px; margin-right: 10px; outline: none; border-right: 1px solid #ccc"
-											placeholder="" name="name" value="${words }">
+											id="search-panel" style="flex: 1; border: none; padding-left: 12px; margin-right: 10px; outline: none; border-right: 1px solid #ccc" placeholder="" name="name" value="${sessionScope.words}">
 										<div class="bc" style="position: relative; margin-right: 60px; cursor: pointer">
 											<span id="searchType"><fmt:message>search.type</fmt:message></span>
 											<div class="de" style="position: absolute; display: none; z-index: 100000000000; top: 100%; left: 0; right: 0; background: #fff; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
@@ -144,7 +142,7 @@
 															</c:when>
 														</c:choose>
 														<c:url var="addToCart" value="/AddToCartServlet">
-															<c:param name="page" value="home"></c:param>
+															<c:param name="page" value="${param.page}"></c:param>
 															<c:param name="action" value="add"></c:param>
 															<c:param name="id" value="${prod.id}"></c:param>
 														</c:url>
@@ -183,7 +181,7 @@
 								</c:if>
 								<c:if test="${param.page eq 'search' }">
 									<c:set var="pattern"
-										value="SearchServlet?name=${name }&action=${action }&"></c:set>
+										value="SearchServlet?action=${action }&name=${name }&"></c:set>
 								</c:if>
 
 								<c:if test="${currentPage > 1 }">

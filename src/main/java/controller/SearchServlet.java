@@ -61,15 +61,10 @@ public class SearchServlet extends HttpServlet {
 		int startPage = Math.max(currentPage - VISIBLE_PAGES / 2, 1);
 		int endPage = Math.min(startPage + VISIBLE_PAGES - 1, totalPageSearch);
 		List<Product> products = pagination.getProductPerPage(currentPage);
-		
 		HttpSession session = request.getSession(true);
-		if (action.equals("search")) {
-			session.setAttribute("words", name);
-		} else {
-			session.setAttribute("words", "");
-		}
 		session.setAttribute("action", action);
 		session.setAttribute("name", name);
+		session.setAttribute("words", name);
 		session.setAttribute("currentPageSearch", currentPage);
 		session.setAttribute("startPageSearch", startPage);
 		session.setAttribute("endPageSearch", endPage);

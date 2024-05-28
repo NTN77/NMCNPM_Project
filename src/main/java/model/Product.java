@@ -120,8 +120,9 @@ public class Product {
 	public double getAmount() {
 		return Math.round(number * price * 100.0) / 100.0;
 	}
+
 	public double vietnamPrice() {
-		double re = this.getPrice() * 25452.48;
+		double re = this.price * 25452.48;
 		return Math.ceil(re);
 	}
 }
