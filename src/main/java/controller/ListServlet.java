@@ -1,5 +1,6 @@
 package controller;
 
+import model.Cart;
 import model.Product;
 import service.IProductService;
 import service.impl.ProductService;
@@ -34,6 +35,11 @@ public class ListServlet extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		Boolean loggedIn = (Boolean) session.getAttribute("isLoggedIn");
 		String page = request.getParameter("page");
+		Cart cart = (Cart) session.getAttribute("cart");
+		if (cart == null) {
+			cart = new Cart();
+		}
+		session.setAttribute("cart", cart);
 		if (loggedIn == null) {
 			session.setAttribute("isLoggedIn", false);
 		} else {

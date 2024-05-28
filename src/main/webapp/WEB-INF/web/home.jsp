@@ -57,7 +57,7 @@
 	<!-- Start Shop Page  -->
 	<a href="${pageContext.request.contextPath}/checkoutPage">Thanh Toán</a>
 	<div class="shop-box-inner">
-		<div class="container">
+		<div class="container" style="max-width: 1400px">
 			<div class="row">
 				<div
 					class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
@@ -115,12 +115,13 @@
 										<c:set var="currency" value=" đồng" />
 									</c:when>
 								</c:choose>
-								<table class="responsive-table">
+								<table class="responsive-table " style="width: 100%">
 									<c:forEach var="prod" items="${Products}" varStatus="status">
 										<c:if test="${status.index % tablewidth == 0 }">
 											<tr>
 										</c:if>
-										<td><a
+										<td>
+											<a
 											href="<c:url value="/ProductDetailServlet?productID=${prod.id }"/>">
 												<div class="products-single fix" style="padding: 5%">
 													<div class="box-img-hover">
@@ -141,10 +142,24 @@
 																	<fmt:formatNumber value="${prod.vietnamPrice()}" type="number" maxFractionDigits="0" pattern="#,##0"/>${currency}
 																</h5>
 															</c:when>
-														</c:choose>													
+														</c:choose>
+														<c:url var="addToCart" value="/AddToCartServlet">
+															<c:param name="page" value="home"></c:param>
+															<c:param name="action" value="add"></c:param>
+															<c:param name="id" value="${prod.id}"></c:param>
+														</c:url>
+														<!-- Sequence diagram: AddCart - CNPM
+     														1: click button "Add To Cart" (is sent by User)
+														-->
+														<form method="POST" action="${addToCart}">
+															<button class="btn btn-success" type="submit" style="width: 100%; margin-top: 10px">
+																<fmt:message>product.cart</fmt:message>
+															</button>
+														</form>
 													</div>
 												</div>
-										</a></td>
+											</a>
+										</td>
 									</c:forEach>
 								</table>
 

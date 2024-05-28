@@ -79,12 +79,23 @@
 						aria-expanded="false" aria-label="Toggle navigation">
 						<i class="fa fa-bars"></i>
 					</button>
-					<a class="navbar-brand" href="${pageContext.request.contextPath}/ListServlet"><img
-					 style="width:50px;height:50px"
-						src="https://hoangkimmobile.com/wp-content/uploads/2021/01/logo-Hoang-Kim-Mobile-retina-xam.png" class="logo" alt=""><br />
+						<% if(session.getAttribute("currentPageHome") != null) {%>
+					<a class="navbar-brand" href="${pageContext.request.contextPath}/ListServlet?currentPage=<%=session.getAttribute("currentPageHome")%>">
+						<img
+								style="width:50px;height:50px"
+								src="https://hoangkimmobile.com/wp-content/uploads/2021/01/logo-Hoang-Kim-Mobile-retina-xam.png" class="logo" alt=""><br />
 						<h1>
 							<b>Hoang Kim Mobile</b>
-						</h1> </a>
+						</h1></a>
+						<%} else {%>
+							<a class="navbar-brand" href="${pageContext.request.contextPath}/ListServlet">
+								<img
+										style="width:50px;height:50px"
+										src="https://hoangkimmobile.com/wp-content/uploads/2021/01/logo-Hoang-Kim-Mobile-retina-xam.png" class="logo" alt=""><br />
+								<h1>
+									<b>Hoang Kim Mobile</b>
+								</h1></a>
+						<%}%>
 				</div>
 				<!-- End Header Navigation -->
 
@@ -92,7 +103,14 @@
 				<div class="collapse navbar-collapse" id="navbar-menu">
 					<ul class="nav navbar-nav mr-auto" data-in="fadeInDown"
 						data-out="fadeOutUp">
-						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/ListServlet"><fmt:message>menu.home</fmt:message></a></li>
+						<li class="nav-item">
+							<% if(session.getAttribute("currentPageHome") != null) {%>
+							<a class="navbar-brand" href="${pageContext.request.contextPath}/ListServlet?currentPage=<%=session.getAttribute("currentPageHome")%>">
+								<fmt:message>menu.home</fmt:message></a></li>
+									<%} else {%>
+								<a class="navbar-brand" href="${pageContext.request.contextPath}/ListServlet"><fmt:message>menu.home</fmt:message></a></li>
+									<%}%>
+
 						<li class="dropdown"><a href="#"
 							class="nav-link dropdown-toggle arrow" data-toggle="dropdown"><fmt:message>menu.products</fmt:message><i
 								class="fa fa-caret-down"></i></a>
