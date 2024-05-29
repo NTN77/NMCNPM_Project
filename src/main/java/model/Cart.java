@@ -72,6 +72,10 @@ public class Cart {
     public int getTotal() {
         return items.size();
     }
+    public double getVNTotalAmount() {
+        return Math.ceil(this.getTotalAmount() * 25452.48);
+    }
+
     /**
      * Sequence diagram: AddCart - CNPM
      * 1.1.3: getInstance() (is sent by AddToCartServlet)

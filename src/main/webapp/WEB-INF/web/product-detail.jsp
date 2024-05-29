@@ -89,7 +89,7 @@
 	Product prod = service.getProductById(Integer.parseInt(request.getParameter("productID")));
 %>
 <div class="shop-detail-box-main">
-	<div class="container">
+	<div class="container" style="margin-top: 30px">
 		<div class="row">
 			<div class="col-xl-4 col-lg-4 col-md-6">
 				<div class="image">

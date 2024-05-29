@@ -66,7 +66,6 @@ public class AddToCartServlet extends HttpServlet {
              * Sequence diagram: AddCart - CNPM
              * 1.1.6: forward(request, response) (send to CartGUI)
              */
-//            request.getRequestDispatcher("/WEB-INF/web/cart.jsp").forward(request, response);
             if(request.getParameter("page").equals("home")) {
                 if(session.getAttribute("currentPageHome")!=null) {
                     response.sendRedirect("ListServlet?currentPage=" + session.getAttribute("currentPageHome"));
@@ -75,6 +74,12 @@ public class AddToCartServlet extends HttpServlet {
                 }
             } else if(request.getParameter("page").equals("detail")) {
                 request.getRequestDispatcher("/WEB-INF/web/product-detail.jsp?productID=" + id).forward(request, response);
+            } else if(request.getParameter("page").equals("search")) {
+                if(session.getAttribute("currentPageSearch")!=null) {
+                    response.sendRedirect("SearchServlet?action=" + session.getAttribute("action") + "&name=" + session.getAttribute("name") + "&currentPage=" + session.getAttribute("currentPageSearch"));
+                } else {
+                    response.sendRedirect("SearchServlet?action=" + session.getAttribute("action") + "&name=" + session.getAttribute("name"));
+                }
             } else {
                 request.getRequestDispatcher("/WEB-INF/web/cart.jsp").forward(request, response);
             }
