@@ -136,7 +136,10 @@
 								<!-- Sequence diagram: AddCart - CNPM
 									 1: click button "Add To Cart" (is sent by User)
 								-->
-								<form method="POST" action="${addToCart}">
+								<form style="display: flex" method="POST" action="${addToCart}">
+									<input style="width:75px; margin-right: 10px;margin-top: 20px;" class="number-input" type="number" min="1"
+										   name="quantityDetail" value="${empty sessionScope.quantityDetail ? 1 : sessionScope.quantityDetail}"
+										   data-product-id="${param.productID}">
 									<button class="btn hvr-hover" type="submit">
 										<fmt:message>product.cart</fmt:message>
 									</button>

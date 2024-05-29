@@ -55,8 +55,17 @@ public class AddToCartServlet extends HttpServlet {
             Product p = this.service.getProductById(Integer.parseInt(id));
 //			Cart c = (Cart) session.getAttribute("cart");
             Cart c = Cart.getInstance();
-            c.add(new Product(p.getId(), p.getName(), p.getDescription(), p.getPrice(),
-                    p.getSrc(), p.getType(), p.getBrand(), 1));
+            String quantityDetail1 = request.getParameter("quantityDetail");
+            if (quantityDetail1 == null || quantityDetail1.equals("")) quantityDetail1 = "1";
+            int quantityDetail = Integer.parseInt(quantityDetail1);
+            if(quantityDetail==1) {
+                c.add(new Product(p.getId(), p.getName(), p.getDescription(), p.getPrice(),
+                        p.getSrc(), p.getType(), p.getBrand(), 1));
+            } else {
+                c.add(new Product(p.getId(), p.getName(), p.getDescription(), p.getPrice(),
+                        p.getSrc(), p.getType(), p.getBrand(), quantityDetail));
+                session.setAttribute("quantityDetail", quantityDetail);
+            }
             /**
              * Sequence diagram: AddCart - CNPM
              * 1.1.5: setAttribute(cart) (self message)
