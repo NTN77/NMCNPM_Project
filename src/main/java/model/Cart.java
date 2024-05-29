@@ -17,7 +17,7 @@ public class Cart {
     public void add(Product p) {
         for (Product item : items) {
             if (p.getId() == item.getId()) {
-                item.setNumber(item.getNumber() + 1);
+                item.setNumber(item.getNumber() + p.getNumber());
                 return;
             }
         }

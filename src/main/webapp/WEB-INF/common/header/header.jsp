@@ -31,13 +31,7 @@
 	<link rel="stylesheet" href="./css/custom.css">
 
 	<!-- Font Awesome CSS links -->
-	<link
-			href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-			rel="stylesheet"
-			integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-			crossorigin="anonymous">
-	<link rel="stylesheet"
-		  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 	<style type="text/css">
 		.a:hover {
@@ -151,9 +145,9 @@
 	</nav>
 	<!-- End Navigation -->
 	<%if(session.getAttribute("name")==null || session.getAttribute("name").equals("")) {%>
-	<a class="navbar-brand" href="${pageContext.request.contextPath}/ListServlet?currentPage=<%=session.getAttribute("currentPageHome")%>"><fmt:message>menu.backHome</fmt:message></a></li>
+	<a  style="text-decoration-line: underline !important; font-size: 20px;margin-left: 200px" href="${pageContext.request.contextPath}/ListServlet?currentPage=<%=session.getAttribute("currentPageHome")%>"><i class="fa-solid fa-arrow-left"></i><fmt:message>menu.backHome</fmt:message></a></li>
 	<%} else {%>
-	<a class="navbar-brand" href="${pageContext.request.contextPath}/SearchServlet?action=<%=session.getAttribute("action")%>&name=<%=session.getAttribute("name")%>&currentPage=<%=session.getAttribute("currentPageSearch")%>"><fmt:message>menu.backHome</fmt:message></a></li>
+	<a  style="text-decoration-line: underline !important; font-size: 20px;margin-left: 200px" href="${pageContext.request.contextPath}/SearchServlet?action=<%=session.getAttribute("action")%>&name=<%=session.getAttribute("name")%>&currentPage=<%=session.getAttribute("currentPageSearch")%>"><i class="fa-solid fa-arrow-left"></i><fmt:message>menu.backHome</fmt:message></a></li>
 	<%}%>
 </header>
 <!-- End Footer  -->
