@@ -5,6 +5,7 @@ import java.util.List;
 import model.Product;
 
 public interface IProductDAO {
+	List<Product> findAll();
 
 	List<Product> searchByName(String productName);
 
@@ -22,4 +23,11 @@ public interface IProductDAO {
 
 	int getProductsPerPageConstant();
 
+	boolean create(Product product);
+
+	boolean update(Product product);
+
+	boolean delete(int id);
+
+	Product findProductbyId(int id);
 }
