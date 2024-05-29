@@ -1,5 +1,6 @@
 <%@ page import="model.Account" %>
-<%@ page import="java.util.Map" %><%--
+<%@ page import="java.util.Map" %>
+<%@ page import="model.Cart" %><%--
   Created by IntelliJ IDEA.
   User: ASUS
   Date: 5/28/2024
@@ -26,7 +27,9 @@
   String namePay = request.getParameter("namePay") == null ? "" : request.getParameter("namePay");
   String phonePay = request.getParameter("phonePay") == null ? "" : request.getParameter("phonePay");
   String address = request.getParameter("address") == null ? "" : request.getParameter("address");
-  String notePay = request.getParameter("notePay") == null ? "" : request.getParameter("notePay");%>
+  String notePay = request.getParameter("notePay") == null ? "" : request.getParameter("notePay");
+  Cart cart = (Cart) session.getAttribute("cart");
+  if (cart == null) cart = new Cart();%>
 <form action="${pageContext.request.contextPath}/checkout" method="get">
   <div class="row">
     <div class="col-lg-8 col-sm-12 p-0">
@@ -161,7 +164,7 @@
     <div class="col-lg-4 col-sm-12  border-start  p-0" style="background-color: #FAFAFA">
       <div class="h6 text-black fw-bold p-3 border">
         Đơn hàng
-        <%--                <span>(<%=cart.getTotal()%> sản phẩm)</span>--%>
+                        <span>(<%=cart.getTotal()%> sản phẩm)</span>
       </div>
       <div style="
 
@@ -193,20 +196,9 @@
         <%--                        </tr>--%>
         <%--                        <%}%>--%>
         <%--Bên tính tiền--%>
-        </table>
-        <div class="row border-top py-3">
-          <div class="input-group-prepend col-9  d-flex align-items-center">
-            <div class="form-floating w-100">
-              <input id="discount_code" type="text" class="form-control"
-                     placeholder="Nhập mã giảm giá">
-              <label for="discount_code" class="floatingInput">Nhập mã giảm giá</label>
-            </div>
-          </div>
-          <div class="col-3 d-flex align-items-center">
-            <button type="button" class="btn btn-primary h-100 w-100 color-for-bg">Áp dụng</button>
-          </div>
+<%--        </table>--%>
         </div>
-        <div class="row border-top py-3">
+        <div class="row border-top py-3" style="padding-left: 25px;">
           <table class="table-borderless">
             <thead>
             <tr>
@@ -219,13 +211,13 @@
               <th class="text-start fw-medium">
                 Tạm tính
               </th>
-              <td class="text-end pe-3">tiền sản phẩm</td>
+              <td class="text-end pe-3"><%=request.getAttribute("total")%>$</td>
             </tr>
             <tr>
               <th class="text-start fw-medium">
                 Phí vận chuyển
               </th>
-              <td class="text-end pe-3">35.000₫</td>
+              <td class="text-end pe-3">2$</td>
             </tr>
             </tbody>
             <tfoot>
@@ -237,7 +229,7 @@
               </th>
               <td class="text-end pe-3 fs-4 text-primary">
                                 <span>
-                                    Tổng Tiền ....
+                                    <%=request.getAttribute("grandTotal")%>$
                                 </span>
               </td>
             </tr>
@@ -246,7 +238,7 @@
         </div>
         <div class="row py-3 ">
           <div class="col-4 d-flex align-items-center">
-                        <span><a href="../CartPage/cart.jsp"
+                        <span><a href="<%=request.getServletContext().getContextPath()%>/AddToCartServlet"
                                  class="text-decoration-none color-for-text"><strong><</strong> Quay lại giỏ hàng</a></span>
           </div>
           <div class="col-8 text-end">

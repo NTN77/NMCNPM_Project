@@ -128,12 +128,12 @@
                                 </c:forEach>
                             </table>
                             <div>
-                                <form >
-                                    <input id="hidden" type="hidden" name="action" value="checkout">
-                                    <button class="btn btn-success" type="submit">
+<%--                                <form >--%>
+<%--                                    <input id="hidden" type="hidden" name="action" value="checkout">--%>
+                                   <a href="${pageContext.request.contextPath}/checkoutPage"> <button class="btn btn-success" type="submit">
                                         <fmt:message>cart.checkout</fmt:message>
-                                    </button>
-                                </form>
+                                   </button></a>
+<%--                                </form>--%>
                             </div>
                         </c:when>
 

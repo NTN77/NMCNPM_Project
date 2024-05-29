@@ -55,7 +55,6 @@
 	<%@include file="/WEB-INF/common/header/slider.jsp"%>
 	<!-- End Slider -->
 	<!-- Start Shop Page  -->
-	<a href="${pageContext.request.contextPath}/checkoutPage">Thanh Toán</a>
 	<div class="shop-box-inner">
 		<div class="container" style="max-width: 1400px">
 			<div class="row">
