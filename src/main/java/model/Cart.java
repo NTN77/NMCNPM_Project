@@ -12,7 +12,7 @@ public class Cart {
     }
     /**
      * Sequence diagram: AddCart - CNPM
-     * 1.1.4: add(Product) (is sent by AddToCartServlet)
+     * 2.1.4: add(Product) (is sent by AddToCartServlet)
      */
     public void add(Product p) {
         for (Product item : items) {
@@ -25,7 +25,7 @@ public class Cart {
     }
     /**
      * Sequence diagram: UpdateQuantity - CNPM
-     * 2.1.2: 1.add(Product, pQuantity) (is sent by AddToCartServlet)
+     * 3.2.1: add(Product, pQuantity) (is sent by AddToCartServlet)
      */
     public void add(Product p, int quantity) {
         for (Product item : items) {
@@ -38,11 +38,11 @@ public class Cart {
     }
     /**
      * Sequence diagram: UpdateQuantity - CNPM
-     * 2.1.3: 1.remove(Product) (is sent by AddToCartServlet)
+     * 3.2.2: remove(Product) (is sent by AddToCartServlet)
      */
     /**
      * Sequence diagram: RemoveItem - CNPM
-     * 2.1.8: remove(Product) (is sent by AddToCartServlet)
+     * 3.2.7: remove(Product) (is sent by AddToCartServlet)
      */
     public void remove(Product p) {
         for (Product item : items) {
@@ -75,7 +75,7 @@ public class Cart {
 
     /**
      * Sequence diagram: AddCart - CNPM
-     * 1.1.3: getInstance() (is sent by AddToCartServlet)
+     * 2.1.3: getInstance() (is sent by AddToCartServlet)
      */
     public static Cart getInstance() {
         if(instance==null) instance = new Cart();

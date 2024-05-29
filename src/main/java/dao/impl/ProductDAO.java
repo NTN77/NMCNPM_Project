@@ -60,15 +60,15 @@ public class ProductDAO extends AbstractDAO<Product> implements IProductDAO {
 	}
 	/**
 	 * Sequence diagram: AddCart - CNPM
-	 * 1.1.1.1: getProductById(id) (is sent by ProductService)
-	 */
-	/**
-	 * Sequence diagram: UpdateQuantity - CNPM
 	 * 2.1.1.1: getProductById(id) (is sent by ProductService)
 	 */
 	/**
+	 * Sequence diagram: UpdateQuantity - CNPM
+	 * 3.1.1.1: getProductById(id) (is sent by ProductService)
+	 */
+	/**
 	 * Sequence diagram: RemoveItem - CNPM
-	 * 2.1.6.1: getProductById(id) (is sent by ProductService)
+	 * 3.2.5.1: getProductById(id) (is sent by ProductService)
 	 */
 	@Override
 	public List<Product> getProductById(int id) {

@@ -95,7 +95,7 @@
                                                         <c:param name="id" value="${product.id}"></c:param>
                                                     </c:url>
                                                     <!-- Sequence diagram: UpdateQuantity - CNPM
-                                                          2: click button "Update" (is sent by User)
+                                                          3: click button "Update" (is sent by Actor: User)
                                                     -->
                                                     <form style="width:120px" method="POST" action="${updateProductQuantity}">
                                                         <input style="width:50px" class="number-input" type="number" min="0"
@@ -112,7 +112,7 @@
                                                         <c:param name="id" value="${product.id}"></c:param>
                                                     </c:url>
                                                     <!-- Sequence diagram: RemoveItem - CNPM
-                                                          3: click button "Delete" (is sent by User)
+                                                          4: click button "Delete" (is sent by Actor: User)
                                                     -->
                                                     <form method="POST" action="${deleteURL}">
                                                         <button class="btn btn-danger" type="submit">

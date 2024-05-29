@@ -133,8 +133,9 @@
 						</c:url>
 						<div class="price-box-bar">
 							<div class="cart-and-bay-btn">
-								<!-- Sequence diagram: AddCart - CNPM
-									 1: click button "Add To Cart" (is sent by User)
+								<!--
+										Sequence diagram: AddCart - CNPM
+										1: click button "Add To Cart" (is sent by actor: User)
 								-->
 								<form style="display: flex" method="POST" action="${addToCart}">
 									<input style="width:75px; margin-right: 10px;margin-top: 20px;" class="number-input" type="number" min="1"
