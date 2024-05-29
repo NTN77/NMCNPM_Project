@@ -128,22 +128,24 @@
                                 </c:forEach>
                             </table>
                             <div>
-                                <c:choose>
-                                    <c:when test="${param.lang eq 'en_US' || sessionScope.LANG eq 'en_US'}">
-                                        <h3><fmt:message>cart.total</fmt:message>:
-                                            $<fmt:formatNumber value="${sessionScope.cart.getTotalAmount()}" maxFractionDigits="2" pattern="#,##0.00"></fmt:formatNumber></h3>
-                                    </c:when>
-                                    <c:when test="${param.lang eq 'vi_VN' || sessionScope.LANG eq 'vi_VN'}">
-                                        <h3><fmt:message>cart.total</fmt:message>:
-                                            <fmt:formatNumber value="${sessionScope.cart.getVNTotalAmount()}" type="number" maxFractionDigits="0" pattern="#,##0"/> đồng</h3>
-                                    </c:when>
-                                </c:choose>
-                                <form>
-                                    <input id="hidden" type="hidden" name="action" value="checkout">
-                                    <button class="btn btn-success" type="submit">
+<%--                                <form >--%>
+<%--                                    <input id="hidden" type="hidden" name="action" value="checkout">--%>
+<%--                                   <a href="${pageContext.request.contextPath}/checkoutPage"><button class="btn btn-success" type="submit">--%>
+
+<%--&lt;%&ndash;                                <c:choose>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                    <c:when test="${param.lang eq 'en_US' || sessionScope.LANG eq 'en_US'}">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        <h3><fmt:message>cart.total</fmt:message>:&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                            $<fmt:formatNumber value="${sessionScope.cart.getTotalAmount()}" maxFractionDigits="2" pattern="#,##0.00"></fmt:formatNumber></h3>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                    </c:when>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                    <c:when test="${param.lang eq 'vi_VN' || sessionScope.LANG eq 'vi_VN'}">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        <h3><fmt:message>cart.total</fmt:message>:&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                            <fmt:formatNumber value="${sessionScope.cart.getVNTotalAmount()}" type="number" maxFractionDigits="0" pattern="#,##0"/> đồng</h3>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                    </c:when>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                </c:choose>&ndash;%&gt;--%>
+
+                                   <a href="<%=request.getServletContext().getContextPath()%>/checkoutPage"><button class="btn btn-success" type="submit">
                                         <fmt:message>cart.checkout</fmt:message>
-                                    </button>
-                                </form>
+                                   </button></a>
                             </div>
                         </c:when>
 

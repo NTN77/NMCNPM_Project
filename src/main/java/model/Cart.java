@@ -64,11 +64,14 @@ public class Cart {
     public double getTotalAmount() {
         double amount = 0;
         for (Product item : items) {
+            System.out.print(item.getPrice());
             amount += item.getNumber() * item.getPrice();
         }
-        return Math.round(amount * 100.0) / 100.0;
+        return Math.round(amount);
     }
-
+    public int getTotal() {
+        return items.size();
+    }
     public double getVNTotalAmount() {
         return Math.ceil(this.getTotalAmount() * 25452.48);
     }
@@ -80,5 +83,9 @@ public class Cart {
     public static Cart getInstance() {
         if(instance==null) instance = new Cart();
         return instance;
+    }
+
+    public void clear() {
+        items.clear();
     }
 }
