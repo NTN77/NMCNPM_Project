@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AbstractDAO<T> implements GenericDAO<T> {
-	private Connection connection;
+	public static Connection connection;
 
-	public Connection getConnection() {
+	public static Connection getConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/shoppingdb","root","");
@@ -24,7 +24,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 		return connection;
 	}
 
-	public void disconnect() {
+	public static void disconnect() {
 		if(connection != null) {
 			try {
 				connection.close();
