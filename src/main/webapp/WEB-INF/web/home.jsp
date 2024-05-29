@@ -252,8 +252,9 @@
 															<c:param name="action" value="add"></c:param>
 															<c:param name="id" value="${prod.id}"></c:param>
 														</c:url>
-														<!-- Sequence diagram: AddCart - CNPM
-     														1: click button "Add To Cart" (is sent by User)
+														<!--
+        														Sequence diagram: AddCart - CNPM
+        														2: click button "Add To Cart" (is sent by actor: User)
 														-->
 														<form method="POST" action="${addToCart}">
 															<button class="btn btn-success" type="submit" style="width: 100%; margin-top: 10px">

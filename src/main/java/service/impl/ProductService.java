@@ -16,7 +16,7 @@ public class ProductService implements IProductService {
 
 	@Override
 	public List<Product> searchByName(String productName) {
-		return this.productDAO.searchByName(productName);
+		return this.productDAO.	searchByName(productName);
 	}
 
 	@Override
@@ -45,18 +45,18 @@ public class ProductService implements IProductService {
 	}
 	/**
 	 * Sequence diagram: AddCart - CNPM
-	 * 1.1.1: getProductById(id) (is sent by AddToCartServlet)
-	 * 1.1.1.2: List<Product> (is replied by ProductDAO)
-	 */
-	/**
-	 * Sequence diagram: UpdateQuantity - CNPM
 	 * 2.1.1: getProductById(id) (is sent by AddToCartServlet)
 	 * 2.1.1.2: List<Product> (is replied by ProductDAO)
 	 */
 	/**
+	 * Sequence diagram: UpdateQuantity - CNPM
+	 * 3.1.1: getProductById(id) (is sent by AddToCartServlet)
+	 * 3.1.1.2: List<Product> (is replied by ProductDAO)
+	 */
+	/**
 	 * Sequence diagram: RemoveItem - CNPM
-	 * 2.1.6: getProductById(id) (is sent by AddToCartServlet)
-	 * 2.1.6.2: List<Product> (is replied by ProductDAO)
+	 * 3.2.5: getProductById(id) (is sent by AddToCartServlet)
+	 * 3.2.5.2: List<Product> (is replied by ProductDAO)
 	 */
 	@Override
 	public Product getProductById(int id) {

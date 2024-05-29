@@ -39,24 +39,28 @@ public class AddToCartServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
-
         String action = request.getParameter("action");
         String id = request.getParameter("id");
         HttpSession session = request.getSession(true);
-        /**
-         * Sequence diagram: AddCart - CNPM
-         * 1.1: addToCart(POST, action, id) (is sent by ProductDetailGUI)
-         */
         if (action != null && action.equals("add")) {
             /**
              * Sequence diagram: AddCart - CNPM
-             * 1.1.2: Product (is replied by ProductService)
+             * 2.1.2: Product (is replied by ProductService)
              */
             Product p = this.service.getProductById(Integer.parseInt(id));
-//			Cart c = (Cart) session.getAttribute("cart");
             Cart c = Cart.getInstance();
+            /**
+             * Sequence diagram: AddCart - CNPM
+             * 1.1: doPost(page, action, id, quantityDetail) (is sent by product-detail.jsp)
+             */
             String quantityDetail1 = request.getParameter("quantityDetail");
-            if (quantityDetail1 == null || quantityDetail1.equals("")) quantityDetail1 = "1";
+            if (quantityDetail1 == null || quantityDetail1.equals("")) {
+                /**
+                 * Sequence diagram: AddCart - CNPM
+                 * 2.1: doPost(page, action, id) (is sent by home.jsp)
+                 */
+                quantityDetail1 = "1";
+            }
             int quantityDetail = Integer.parseInt(quantityDetail1);
             if(quantityDetail==1) {
                 c.add(new Product(p.getId(), p.getName(), p.getDescription(), p.getPrice(),
@@ -64,26 +68,38 @@ public class AddToCartServlet extends HttpServlet {
             } else {
                 c.add(new Product(p.getId(), p.getName(), p.getDescription(), p.getPrice(),
                         p.getSrc(), p.getType(), p.getBrand(), quantityDetail));
-                session.setAttribute("quantityDetail", quantityDetail);
             }
             /**
              * Sequence diagram: AddCart - CNPM
-             * 1.1.5: setAttribute(cart) (self message)
+             * 2.1.5: setAttribute(cart) (self message)
              */
             session.setAttribute("cart", c);
-            /**
-             * Sequence diagram: AddCart - CNPM
-             * 1.1.6: forward(request, response) (send to CartGUI)
-             */
             if(request.getParameter("page").equals("home")) {
+                /**
+                 * Sequence diagram: AddCart - CNPM
+                 * 2.1.8: forward(request, response) (send to home.jsp)
+                 */
                 if(session.getAttribute("currentPageHome")!=null) {
                     response.sendRedirect("ListServlet?currentPage=" + session.getAttribute("currentPageHome"));
                 } else {
                     response.sendRedirect("ListServlet");
                 }
             } else if(request.getParameter("page").equals("detail")) {
+                /**
+                 * Sequence diagram: AddCart - CNPM
+                 * 2.1.6: setAttribute(quantityDetail) (self message)
+                 */
+                session.setAttribute("quantityDetail", quantityDetail);
+                /**
+                 * Sequence diagram: AddCart - CNPM
+                 * 2.1.7: forward(request, response) (send to product-detail.jsp)
+                 */
                 request.getRequestDispatcher("/WEB-INF/web/product-detail.jsp?productID=" + id).forward(request, response);
             } else if(request.getParameter("page").equals("search")) {
+                /**
+                 * Sequence diagram: AddCart - CNPM
+                 * 2.1.8: forward(request, response) (send to home.jsp)
+                 */
                 if(session.getAttribute("currentPageSearch")!=null) {
                     response.sendRedirect("SearchServlet?action=" + session.getAttribute("action") + "&name=" + session.getAttribute("name") + "&currentPage=" + session.getAttribute("currentPageSearch"));
                 } else {
@@ -95,18 +111,18 @@ public class AddToCartServlet extends HttpServlet {
         }
         /**
          * Sequence diagram: UpdateQuantity - CNPM
-         * 2.1: updateProductQuantity(POST, action, id, pQuantity) (is sent by CartGUI)
+         * 3.1: doPost(action, id, pQuantity) (is sent by cart.jsp)
          */
         else if (action != null && action.equals("updateQuantity")) {
             int pQuantity = Integer.parseInt(request.getParameter("pQuantity"));
             /**
              * Sequence diagram: UpdateQuantity - CNPM
-             * 2.1.2: Product (is replied by ProductService)
+             * 3.1.2: Product (is replied by ProductService)
              */
             Product p = this.service.getProductById(Integer.parseInt(id));
             /**
              * Sequence diagram: UpdateQuantity - CNPM
-             * 2.2: getAtrribute(cart) (self message)
+             * 3.2: getAttribute(cart) (get from cart.jsp)
              */
             Cart c = (Cart) session.getAttribute("cart");
             if (pQuantity > 0) {
@@ -117,39 +133,39 @@ public class AddToCartServlet extends HttpServlet {
             }
             /**
              * Sequence diagram: UpdateQuantity - CNPM
-             * 2.1.4: setAttribute(cart) (self message)
+             * 3.2.3: setAttribute(cart) (self message)
              */
             session.setAttribute("cart", c);
             /**
              * Sequence diagram: UpdateQuantity - CNPM
-             * 2.1.5: forward(request, response) (send to CartGUI)
+             * 3.2.4: forward(request, response) (send to cart.jsp)
              */
             request.getRequestDispatcher("/WEB-INF/web/cart.jsp").forward(request, response);
         }
         /**
          * Sequence diagram: RemoveItem - CNPM
-         * 3.1: deleteURL(POST, action, id) (is sent by CartGUI)
+         * 4.1: doPost(action, id) (is sent by cart.jsp)
          */
         else if (action != null && action.equals("delete")) {
             /**
              * Sequence diagram: RemoveItem - CNPM
-             * 3.2: getAtrribute(cart) (self message)
+             * 4.2: getAttribute(cart) (get from cart.jsp)
              */
             Cart c = (Cart) session.getAttribute("cart");
             /**
              * Sequence diagram: RemoveItem - CNPM
-             * 2.1.7: Product (is replied by ProductService)
+             * 3.2.6: Product (is replied by ProductService)
              */
             Product p = this.service.getProductById(Integer.parseInt(id));
             c.remove(p);
             /**
              * Sequence diagram: RemoveItem - CNPM
-             * 2.1.9: setAttribute(cart) (self message)
+             * 3.2.8: setAttribute(cart) (self message)
              */
             session.setAttribute("cart", c);
             /**
              * Sequence diagram: RemoveItem - CNPM
-             * 2.1.10: forward(request, response) (send to CartGUI)
+             * 3.2.9: forward(request, response) (send to cart.jsp)
              */
             request.getRequestDispatcher("/WEB-INF/web/cart.jsp").forward(request, response);
         }
